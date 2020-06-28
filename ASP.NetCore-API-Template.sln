@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NetCore-API-Template", "ASP.NetCore-API-Template\ASP.NetCore-API-Template.csproj", "{F8849FF2-7971-4934-8F4A-6A222AA38032}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{158354CF-1F3F-4E8C-9E73-4159598F659C}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		api-spec.yml = api-spec.yml
+		azure-pipelines.yml = azure-pipelines.yml
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8849FF2-7971-4934-8F4A-6A222AA38032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8849FF2-7971-4934-8F4A-6A222AA38032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8849FF2-7971-4934-8F4A-6A222AA38032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8849FF2-7971-4934-8F4A-6A222AA38032}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB6B0652-34DD-455C-92CE-98658F31DB12}
+	EndGlobalSection
+EndGlobal

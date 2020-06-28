@@ -1,0 +1,50 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- 'develop'
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+jobs: 
+
+- job: Build 
+  displayName: 'build'
+
+  steps:
+
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+      command: 'build'
+      projects: ASP.NetCore-API-Template'
+      configuration: '$(buildConfiguration)'
+    
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'publish'
+      arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+      publishWebProjects: true
+      zipAfterPublish: true
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+      artifactName: 'API Executable'
+      
+  - task: ArchiveFiles@2
+    displayName: 'Archive Integration Tests'
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: '$(Build.ArtifactStagingDirectory)/API-Template.zip'
+      replaceExistingArchive: true
+
+    
