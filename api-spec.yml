@@ -1,0 +1,83 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: api template
+  
+paths:
+  /api/hello:
+    get:
+      summary: say hello
+      operationId: helloEndpoint
+      tags:
+        - hello
+      parameters: []
+                      
+      responses:
+        '200':
+          description: Successfull 
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/DefaultResponse"
+        '500':
+          description: Not Successfull
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/RequestResultError"
+  
+  /api/data:
+    post:
+      summary: import data
+      operationId: importDataEndpoint
+      tags:
+        - import
+      requestBody:
+        content: 
+          application/json: 
+            schema: 
+              $ref: '#/components/schemas/DataImportRequestBody'
+       
+      responses:
+        '200':
+          description: Import was successfull 
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/DefaultResponse"
+        '400':
+          description: No Data sent
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/RequestResultError"
+        '500':
+          description: Import was not successfull
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/RequestResultError"
+                
+components:
+  schemas:
+    DefaultResponse:
+      type: object
+      properties: 
+        message:
+          type: string
+        
+    DataImportRequestBody:
+      type: object
+      properties: 
+        value1:
+          type: string
+        value2:
+          type: string
+        value3:
+          type: string
+            
+    RequestResultError:
+      type: object
+      properties:
+        errorMessage: 
+          type: string
