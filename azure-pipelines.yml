@@ -36,7 +36,7 @@ jobs:
     displayName: Build API Template
     inputs:
       command: 'build'
-      projects: ASP.NetCore-API-Template'
+      projects: 'ASP.NetCore-API-Template'
       configuration: '$(buildConfiguration)'
     
   - task: DotNetCoreCLI@2
