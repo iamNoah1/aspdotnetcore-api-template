@@ -18,15 +18,29 @@ jobs:
   displayName: 'build'
 
   steps:
+  - task: DotNetCoreCLI@2
+    displayName: Run Unit Tests for API Template
+    inputs:
+      command: 'test'
+      projects: 'ASP.NetCore-API-UnitTests'
+      arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
+      publishTestResults: true
+
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish code coverage report'
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
 
   - task: DotNetCoreCLI@2
-    displayName: Build
+    displayName: Build API Template
     inputs:
       command: 'build'
       projects: ASP.NetCore-API-Template'
       configuration: '$(buildConfiguration)'
     
   - task: DotNetCoreCLI@2
+    displayName: Prepare Publishing
     inputs:
       command: 'publish'
       arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
@@ -34,17 +48,7 @@ jobs:
       zipAfterPublish: true
 
   - task: PublishBuildArtifacts@1
+    displayName: Publish
     inputs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
       artifactName: 'API Executable'
-      
-  - task: ArchiveFiles@2
-    displayName: 'Archive Integration Tests'
-    inputs:
-      rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-      includeRootFolder: false
-      archiveType: zip
-      archiveFile: '$(Build.ArtifactStagingDirectory)/API-Template.zip'
-      replaceExistingArchive: true
-
-    

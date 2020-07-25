@@ -19,12 +19,6 @@ paths:
             application/json:    
               schema:
                 $ref: "#/components/schemas/DefaultResponse"
-        '500':
-          description: Not Successfull
-          content:
-            application/json:    
-              schema:
-                $ref: "#/components/schemas/RequestResultError"
   
   /api/data:
     post:
