@@ -52,3 +52,10 @@ jobs:
     inputs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
       artifactName: 'API Executable'
+
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'docker reg connection'
+      repository: 'testrepo'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
